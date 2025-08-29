@@ -1,0 +1,11 @@
+import { Router } from "express";
+import Appointment from "../models/Appointment.js";
+import { crudHandlers } from "./helpers.js";
+const router = Router();
+const h = crudHandlers(Appointment, [{ path: "patient" }, { path: "doctor" }]);
+router.get("/", h.list);
+router.get("/:id", h.get);
+router.post("/", h.create);
+router.put("/:id", h.update);
+router.delete("/:id", h.remove);
+export default router;
